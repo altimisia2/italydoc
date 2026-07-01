@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美しきイタリア8日間 最終日程表</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap');
+
+  :root {
+    --italy-green: #009246;
+    --italy-red: #CE2B37;
+    --deep-navy: #1a2744;
+    --warm-gold: #C9A84C;
+    --light-cream: #faf8f4;
+    --mid-gray: #6b7280;
+    --border-light: #e5e0d8;
+    --accent-blue: #2563a8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--light-cream);
+    color: #1f2937;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: var(--deep-navy);
+    color: white;
+    padding: 40px 32px 32px;
+    position: relative;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--italy-green) 33.3%, #fff 33.3% 66.6%, var(--italy-red) 66.6%);
+  }
+  .header-inner { max-width: 860px; margin: 0 auto; }
+  .header-label {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--warm-gold); margin-bottom: 8px;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px; font-weight: 700; line-height: 1.2; margin-bottom: 6px;
+  }
+  .header-sub { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .header-meta { display: flex; gap: 28px; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-label { font-size: 10px; letter-spacing: 1px; color: var(--warm-gold); text-transform: uppercase; }
+  .meta-value { font-size: 13px; font-weight: 600; }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--mid-gray); padding: 28px 20px 10px;
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border-light); }
+
+  /* ===== CARD (generic white box) ===== */
+  .card {
+    background: white; border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    overflow: hidden;
+    max-width: 860px; margin: 0 auto 20px;
+    padding: 0 20px;
+  }
+  .card-header {
+    background: var(--deep-navy); color: white;
+    padding: 11px 20px; font-weight: 700; font-size: 14px;
+    margin: 0 -20px;
+  }
+
+  /* ===== DEPARTURE INFO ===== */
+  .dep-grid { padding: 6px 0; }
+  .dep-row {
+    display: flex; gap: 12px;
+    padding: 8px 0; border-bottom: 1px solid var(--border-light);
+    align-items: baseline;
+  }
+  .dep-row:last-child { border-bottom: none; }
+  .dep-key { font-weight: 700; color: var(--mid-gray); font-size: 12px; min-width: 110px; flex-shrink: 0; }
+  .dep-val { font-size: 14px; }
+  .time-badge {
+    display: inline-block; background: var(--deep-navy); color: white;
+    font-size: 22px; font-weight: 700; padding: 4px 16px;
+    border-radius: 4px; letter-spacing: 2px; vertical-align: middle;
+  }
+  .urgent { color: var(--italy-red); font-weight: 700; font-size: 12px; margin-left: 8px; }
+  .alert-box {
+    background: #fff5f5; border: 1px solid #fca5a5; border-radius: 6px;
+    padding: 10px 14px; margin: 12px 0; font-size: 12px; color: #7f1d1d;
+  }
+  .alert-box strong { display: block; margin-bottom: 3px; color: #dc2626; }
+  .note-box {
+    background: #fefce8; border: 1px solid #fde047; border-radius: 6px;
+    padding: 10px 14px; margin: 12px 0; font-size: 12px; color: #713f12;
+  }
+
+  /* ===== HOTEL GRID ===== */
+  .hotel-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; padding: 16px 0;
+  }
+  .hotel-card {
+    background: #f9f8f6; border: 1px solid var(--border-light);
+    border-radius: 8px; padding: 12px 14px;
+  }
+  .hotel-city { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--italy-red); margin-bottom: 4px; }
+  .hotel-nights { font-size: 11px; color: var(--deep-navy); font-weight: 600; margin-bottom: 4px; }
+  .hotel-name { font-weight: 700; font-size: 13px; }
+  .hotel-name-jp { font-size: 11px; color: var(--mid-gray); margin-bottom: 6px; }
+  .hotel-addr { font-size: 11px; color: #555; border-top: 1px solid var(--border-light); padding-top: 6px; margin-top: 6px; }
+  .hotel-tel { font-size: 11px; color: var(--accent-blue); margin-top: 2px; }
+  .hotel-url { font-size: 11px; margin-top: 4px; }
+  .hotel-url a { color: var(--accent-blue); text-decoration: none; }
+  .hotel-url a:hover { text-decoration: underline; }
+  .hotel-url { font-size: 11px; margin-top: 4px; }
+  .hotel-url a { color: var(--accent-blue); text-decoration: none; }
+  .hotel-url a:hover { text-decoration: underline; }
+  .hotel-ci-co { font-size: 11px; color: var(--deep-navy); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border-light); }
+  .hotel-fac-label { font-size: 10px; font-weight: 700; color: var(--mid-gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 8px; margin-bottom: 4px; }
+  .hotel-fac { display: flex; flex-wrap: wrap; gap: 4px; }
+  .fac-item { display: inline-flex; align-items: center; gap: 2px; font-size: 10px; background: #f3f4f6; border-radius: 4px; padding: 2px 6px; }
+  .fac-name { color: #4b5563; }
+  .fac-val { font-weight: 700; }
+  .fac-on { color: var(--italy-green); }
+  .fac-off { color: #9ca3af; }
+  .fac-half { color: #f59e0b; }
+  .fac-none { color: #d1d5db; }
+
+  /* ===== DAY BLOCK ===== */
+  .day-block {
+    background: white; border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    overflow: hidden;
+    max-width: 860px; margin: 0 auto 20px;
+  }
+  .day-header {
+    display: flex; align-items: stretch;
+    background: var(--deep-navy); color: white;
+  }
+  .day-num {
+    background: var(--italy-green);
+    padding: 14px 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700;
+    min-width: 72px; text-align: center; line-height: 1;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .day-num span { display: block; font-size: 10px; font-family: 'Noto Sans JP', sans-serif; font-weight: 400; letter-spacing: 1px; margin-top: 2px; }
+  .day-info { padding: 12px 20px; flex: 1; }
+  .day-date { font-size: 16px; font-weight: 700; }
+  .day-route { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+  .day-meal-bar {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 6px; font-size: 12px;
+  }
+  .meal-label { color: rgba(255,255,255,0.5); font-size: 10px; }
+  .meal-on { color: var(--warm-gold); font-weight: 700; }
+  .meal-off { color: rgba(255,255,255,0.35); }
+
+  /* ===== VERTICAL TIMELINE ===== */
+  .timeline {
+    padding: 20px 16px 20px 8px;
+    position: relative;
+  }
+
+  /* The vertical line drawn through tl-center */
+  .tl-line { display: none; }
+  .timeline {
+    position: relative;
+  }
+  /* Draw the line as a left-border on tl-right side of tl-center */
+  .tl-entry .tl-center::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -24px;
+    bottom: -24px;
+    width: 2px;
+    background: #d1d5db;
+    z-index: 0;
+  }
+  .tl-entry:first-child .tl-center::before { top: 0; }
+  .tl-entry:last-child .tl-center::before { bottom: 0; }
+
+  .tl-entry {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .tl-entry:last-child { margin-bottom: 0; }
+
+  /* Left: time column */
+  .tl-left {
+    width: 42px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-top: 2px;
+    padding-right: 6px;
+  }
+  .tl-time {
+    font-size: 12px; font-weight: 700; color: var(--deep-navy);
+    white-space: nowrap; letter-spacing: 0.5px;
+    display: flex; flex-direction: column; align-items: flex-end; gap: 1px;
+    text-align: right;
+  }
+  .tl-time-approx {
+    font-size: 10px; font-weight: 400; color: var(--mid-gray); letter-spacing: 0;
+  }
+
+  /* Center: dot column — line runs through via timeline container pseudo */
+  .tl-center {
+    width: 20px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    position: relative;
+  }
+  .tl-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--deep-navy);
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--deep-navy);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-dot.gold { background: var(--warm-gold); box-shadow: 0 0 0 2px var(--warm-gold); }
+  .tl-dot.green { background: var(--italy-green); box-shadow: 0 0 0 2px var(--italy-green); }
+  .tl-dot.red { background: var(--italy-red); box-shadow: 0 0 0 2px var(--italy-red); }
+
+  /* Right: content */
+  .tl-right {
+    flex: 1;
+    padding-left: 20px;
+  }
+  .tl-city {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--italy-red); margin-bottom: 2px;
+  }
+  .tl-transport {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 700; margin-bottom: 6px; margin-right: 4px;
+  }
+  .t-plane { background: #dbeafe; color: #1e40af; }
+  .t-bus   { background: #d1fae5; color: #065f46; }
+  .t-train { background: #ede9fe; color: #5b21b6; }
+
+  .tl-title {
+    font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 4px;
+  }
+  .tl-detail {
+    font-size: 13px; color: #374151; margin-bottom: 4px;
+  }
+  .tl-sub {
+    font-size: 12px; color: var(--mid-gray); margin-top: 2px;
+  }
+
+  /* Sight items */
+  .sights { margin-top: 6px; display: flex; flex-direction: column; gap: 3px; }
+  .sight {
+    display: flex; gap: 6px; align-items: flex-start;
+    font-size: 13px; color: #374151;
+  }
+  .sight-icon {
+    flex-shrink: 0;
+    font-size: 10px; font-weight: 700;
+    padding: 1px 5px; border-radius: 3px;
+    white-space: nowrap; margin-top: 2px;
+  }
+  .s-enter { background: #fee2e2; color: var(--italy-red); }
+  .s-ext   { background: #dbeafe; color: var(--accent-blue); }
+  .s-car   { background: #d1fae5; color: #065f46; }
+
+  /* Optional box */
+  .opt-box {
+    margin-top: 8px; background: #fffbf0;
+    border: 1px solid #fbbf24; border-radius: 6px;
+    padding: 8px 12px; font-size: 12px; color: #92400e;
+  }
+  .opt-box strong { color: #78350f; }
+
+  /* Stay badge row */
+  .tl-stay {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed var(--border-light);
+    font-size: 12px; color: var(--mid-gray);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .stay-badge {
+    background: var(--deep-navy); color: white;
+    padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 700;
+  }
+
+  /* Memo / note inside timeline */
+  .tl-note {
+    margin-top: 8px; background: #f9f8f6;
+    border-left: 3px solid var(--border-light);
+    padding: 8px 12px; font-size: 12px; color: #555; border-radius: 0 4px 4px 0;
+  }
+
+  /* ===== CAUTIONS ===== */
+  .caution-card {
+    background: white; border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    overflow: hidden; max-width: 860px; margin: 0 auto 16px;
+  }
+  .caution-hd {
+    background: #374151; color: white;
+    padding: 10px 20px; font-weight: 700; font-size: 14px;
+  }
+  .caution-body { padding: 16px 20px; }
+  .caution-body p { font-size: 13px; margin-bottom: 10px; line-height: 1.8; }
+  .caution-body p:last-child { margin-bottom: 0; }
+  .caution-cat {
+    font-weight: 700; color: var(--deep-navy); font-size: 13px;
+    margin: 14px 0 4px; border-left: 3px solid var(--italy-green); padding-left: 8px;
+  }
+  .caution-cat:first-child { margin-top: 0; }
+
+  /* ===== TIME GUIDE ===== */
+  .time-guide {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 6px; padding: 16px 0;
+  }
+  .tc {
+    background: #f0ede8; border-radius: 6px;
+    padding: 8px 6px; text-align: center; font-size: 12px;
+  }
+  .tc-label { font-weight: 700; color: var(--deep-navy); }
+  .tc-range { font-size: 10px; color: var(--mid-gray); margin-top: 2px; }
+
+  /* ===== OPTIONAL TOURS ===== */
+  .opt-card {
+    border: 1px solid #fbbf24; border-radius: 8px;
+    padding: 14px 16px; background: #fffbf0; margin-bottom: 14px;
+  }
+  .opt-title { font-weight: 700; font-size: 14px; color: #92400e; margin-bottom: 10px; }
+  .opt-row { display: flex; gap: 8px; font-size: 13px; margin-bottom: 4px; }
+  .opt-key { color: var(--mid-gray); min-width: 90px; flex-shrink: 0; }
+  .opt-val { font-weight: 600; }
+  .opt-cancel { font-size: 11px; color: #6b5e00; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e0c84a; }
+
+  /* ===== INFO CARDS ===== */
+  .info-cards {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px; max-width: 860px; margin: 0 auto 20px; padding: 0 20px;
+  }
+  .info-card {
+    background: white; border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07); overflow: hidden;
+  }
+  .info-card-hd { background: var(--deep-navy); color: white; padding: 10px 16px; font-weight: 700; font-size: 13px; }
+  .info-card-body { padding: 14px 16px; font-size: 13px; line-height: 1.85; }
+  .rate-big { font-size: 26px; font-weight: 700; color: var(--italy-red); margin: 4px 0; }
+
+  /* ===== LEGEND ===== */
+  .legend {
+    max-width: 860px; margin: 0 auto 24px; padding: 0 20px;
+  }
+  .legend-inner {
+    background: white; border-radius: 8px; padding: 12px 18px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07); font-size: 12px; color: var(--mid-gray);
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--deep-navy); color: rgba(255,255,255,0.55);
+    text-align: center; padding: 20px; font-size: 11px; margin-top: 16px;
+  }
+  .footer strong { color: white; }
+
+  /* wrapper padding */
+  .wrap { padding: 0 20px; }
+
+  @media (max-width: 580px) {
+    .hotel-grid { grid-template-columns: 1fr; }
+    .info-cards { grid-template-columns: 1fr; }
+    .time-guide { grid-template-columns: repeat(3, 1fr); }
+    /* day-meal-bar always shown */
+    .header-title { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-label">HIS impresso 最終日程表</div>
+    <div class="header-title">美しきイタリア 8日間</div>
+    <div class="header-sub">ANA往復直行便利用（羽田⇔ミラノ間）</div>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-label">出発日</span><span class="meta-value">2026年7月1日（水）</span></div>
+      <div class="meta-item"><span class="meta-label">帰国日</span><span class="meta-value">2026年7月8日（水）</span></div>
+      <div class="meta-item"><span class="meta-label">往路</span><span class="meta-value">ANA NH207便</span></div>
+      <div class="meta-item"><span class="meta-label">復路</span><span class="meta-value">ANA NH208便</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 出発のご案内 ===== -->
+<div class="section-title">出発のご案内</div>
+<div class="wrap">
+<div class="card" style="padding-bottom:16px;">
+  <div class="card-header">✈ 出発のご案内</div>
+  <div class="dep-grid" style="padding-top:8px;">
+    <div class="dep-row"><span class="dep-key">集合日時</span><span class="dep-val">2026年7月1日（水）</span></div>
+    <div class="dep-row"><span class="dep-key">集合時間</span><span class="dep-val"><span class="time-badge">20:15</span><span class="urgent">※上記集合時間は厳守ください</span></span></div>
+    <div class="dep-row"><span class="dep-key">集合場所</span><span class="dep-val">羽田空港 第3ターミナル3階 Y団体カウンター</span></div>
+    <div class="dep-row"><span class="dep-key">カウンター名</span><span class="dep-val">＜HIS impresso＞ 前集合</span></div>
+    <div class="dep-row"><span class="dep-key">出発便</span><span class="dep-val">ANA NH207便</span></div>
+    <div class="dep-row"><span class="dep-key">出発時刻</span><span class="dep-val">22:45</span></div>
+    <div class="dep-row"><span class="dep-key">ご帰国日</span><span class="dep-val">2026年7月8日（水）</span></div>
+  </div>
+  <div class="alert-box">
+    <strong>当日の緊急連絡先：HISエアポートアシスタンスサービス【羽田空港】</strong>
+    TEL：03-6428-0366　営業時間 07:30〜22:00<br>
+    ※出発当日のみの緊急連絡先です。その他のご質問はお申し込み店舗までご連絡下さい
+  </div>
+</div>
+</div>
+
+<!-- ===== ホテル ===== -->
+<div class="section-title">ご利用予定ホテル</div>
+<div class="wrap">
+<div class="card" style="padding-bottom:4px;">
+  <div class="card-header">🏨 ご利用予定ホテル</div>
+  <div class="hotel-grid">
+    <div class="hotel-card">
+      <div class="hotel-city">ベネチア本島</div>
+      <div class="hotel-nights">2日目（7/2）　1泊</div>
+      <div class="hotel-name">PRINCIPE</div><div class="hotel-name-jp">（プリンチペ）</div>
+      <div class="hotel-url">
+      <div class="hotel-ci-co">CI <strong>15:00</strong>　CO <strong>12:00</strong></div>
+      <div class="hotel-fac-label">館内設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">エレベーター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バルコニー</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">スパ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">フィットネス</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">プール</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">会議室</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">宴会場</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ビジネスセンター</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">レストラン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ルームサービス</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ランドリー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">日本語スタッフ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">英語スタッフ</span><span class="fac-val fac-on">○</span></span></div>
+      <div class="hotel-fac-label">客室設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">TV</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電話</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">エアコン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">セーフティBOX</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">タオル</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">石鹸/シャンプー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バスタブ</span><span class="fac-val fac-half">△</span></span><span class="fac-item"><span class="fac-name">アイロン</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">インターネット</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">歯ブラシ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">トースター</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">炊飯器</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">調理器具</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">ポット</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">シャワー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ドライヤー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電子レンジ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">ミニバー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">冷蔵庫</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">コーヒーメーカー</span><span class="fac-val fac-off">×</span></span></div><a href="https://www.hotelprincipevenice.it/" target="_blank">🌐 www.hotelprincipevenice.it</a></div>
+      <div class="hotel-addr">Lista Di Spagna, 146, Venice 30121</div>
+      <div class="hotel-tel">TEL：+39 041 2204000</div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-city">フィレンツェ</div>
+      <div class="hotel-nights">3日目（7/3）　1泊</div>
+      <div class="hotel-name">Hotel Albani</div><div class="hotel-name-jp">（アルバーニ）</div>
+      <div class="hotel-url">
+      <div class="hotel-ci-co">CI <strong>14:00</strong>　CO <strong>12:00</strong></div>
+      <div class="hotel-fac-label">館内設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">エレベーター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バルコニー</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">スパ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">フィットネス</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">プール</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">会議室</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">宴会場</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ビジネスセンター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">レストラン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ルームサービス</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ランドリー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">日本語スタッフ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">英語スタッフ</span><span class="fac-val fac-on">○</span></span></div>
+      <div class="hotel-fac-label">客室設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">TV</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電話</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">エアコン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">セーフティBOX</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">タオル</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">石鹸/シャンプー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バスタブ</span><span class="fac-val fac-half">△</span></span><span class="fac-item"><span class="fac-name">アイロン</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">インターネット</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">歯ブラシ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">トースター</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">炊飯器</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">調理器具</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">ポット</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">シャワー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ドライヤー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電子レンジ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">ミニバー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">冷蔵庫</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">コーヒーメーカー</span><span class="fac-val fac-none">－</span></span></div><a href="https://hotelalbanifirenze.com/" target="_blank">🌐 hotelalbanifirenze.com</a></div>
+      <div class="hotel-addr">Via Fiume 12, Florence, 50123, ITALY</div>
+      <div class="hotel-tel">TEL：+39 055 26030</div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-city">ローマ</div>
+      <div class="hotel-nights">4〜5日目（7/4・7/5）　2泊</div>
+      <div class="hotel-name">BETTOJA HOTEL MASSIMO D'AZEGLIO</div><div class="hotel-name-jp">（マッシーモ ダゼリオ）</div>
+      <div class="hotel-url">
+      <div class="hotel-ci-co">CI <strong>14:00</strong>　CO <strong>12:00</strong></div>
+      <div class="hotel-fac-label">館内設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">エレベーター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バルコニー</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">スパ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">フィットネス</span><span class="fac-val fac-half">△</span></span><span class="fac-item"><span class="fac-name">プール</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">会議室</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">宴会場</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">ビジネスセンター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">レストラン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ルームサービス</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ランドリー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">日本語スタッフ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">英語スタッフ</span><span class="fac-val fac-on">○</span></span></div>
+      <div class="hotel-fac-label">客室設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">TV</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電話</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">エアコン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">セーフティBOX</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">タオル</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">石鹸/シャンプー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バスタブ</span><span class="fac-val fac-half">△</span></span><span class="fac-item"><span class="fac-name">アイロン</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">インターネット</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">歯ブラシ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">トースター</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">炊飯器</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">調理器具</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">ポット</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">シャワー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ドライヤー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電子レンジ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">ミニバー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">冷蔵庫</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">コーヒーメーカー</span><span class="fac-val fac-off">×</span></span></div><a href="https://www.romehoteldazeglio.it/en/" target="_blank">🌐 www.romehoteldazeglio.it</a></div>
+      <div class="hotel-addr">Via Cavour 18, Roma 00184</div>
+      <div class="hotel-tel">TEL：+39 06 487 0270</div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-city">ミラノ</div>
+      <div class="hotel-nights">6日目（7/6）　1泊</div>
+      <div class="hotel-name">BEST WESTERN GOLDENMILE</div><div class="hotel-name-jp">（ベストウエスタンホテル ゴールデンマイル）</div>
+      <div class="hotel-url">
+      <div class="hotel-ci-co">CI <strong>14:00</strong>　CO <strong>12:00</strong></div>
+      <div class="hotel-fac-label">館内設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">エレベーター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バルコニー</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">スパ</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">フィットネス</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">プール</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">会議室</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">宴会場</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ビジネスセンター</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">レストラン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バー</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">ルームサービス</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ランドリー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">日本語スタッフ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">英語スタッフ</span><span class="fac-val fac-on">○</span></span></div>
+      <div class="hotel-fac-label">客室設備</div>
+      <div class="hotel-fac"><span class="fac-item"><span class="fac-name">TV</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電話</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">エアコン</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">セーフティBOX</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">タオル</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">石鹸/シャンプー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">バスタブ</span><span class="fac-val fac-half">△</span></span><span class="fac-item"><span class="fac-name">アイロン</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">インターネット</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">歯ブラシ</span><span class="fac-val fac-off">×</span></span><span class="fac-item"><span class="fac-name">トースター</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">炊飯器</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">調理器具</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">ポット</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">シャワー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">ドライヤー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">電子レンジ</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">ミニバー</span><span class="fac-val fac-on">○</span></span><span class="fac-item"><span class="fac-name">冷蔵庫</span><span class="fac-val fac-none">－</span></span><span class="fac-item"><span class="fac-name">コーヒーメーカー</span><span class="fac-val fac-off">×</span></span></div><a href="https://www.hotelgoldenmile.it/en/" target="_blank">🌐 www.hotelgoldenmile.it</a></div>
+      <div class="hotel-addr">Via Cristoforo Colombo 33 Trezzano sul Naviglio (Mil) 20090</div>
+      <div class="hotel-tel">TEL：+39 02 48498111</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ===== 食事一覧 ===== -->
+<div class="section-title">食事一覧</div>
+<div class="wrap">
+<div class="card" style="padding-bottom:16px;">
+  <div class="card-header">🍽 食事一覧</div>
+    <div style="overflow-x:auto;">
+  <table style="width:100%;border-collapse:collapse;margin-top:4px;font-size:13px;">
+    <thead>
+      <tr style="background:#f0ede8;">
+        <th style="padding:8px 12px;text-align:left;font-weight:700;color:var(--mid-gray);border-bottom:2px solid var(--border-light);white-space:nowrap;">日程</th>
+        <th style="padding:8px 12px;text-align:center;font-weight:700;color:var(--mid-gray);border-bottom:2px solid var(--border-light);">朝</th>
+        <th style="padding:8px 12px;text-align:center;font-weight:700;color:var(--mid-gray);border-bottom:2px solid var(--border-light);">昼</th>
+        <th style="padding:8px 12px;text-align:center;font-weight:700;color:var(--mid-gray);border-bottom:2px solid var(--border-light);">夕</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:white;">1日目　7/1（水）</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:white;">－</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:white;">－</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#f3f4f6;">✕</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:#fafaf9;">2日目　7/2（木）</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#ede9fe;">✕</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#e0f2fe;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#e0f2fe;">✕</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:white;">3日目　7/3（金）</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#e0f2fe;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#f0fdf4;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#f0fdf4;">✕</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:#fafaf9;">4日目　7/4（土）</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#f0fdf4;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#f0fdf4;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#fef2f2;">✕</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:white;">5日目　7/5（日）</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#fef2f2;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#fef2f2;">✕</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#fef2f2;">✕</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:#fafaf9;">6日目　7/6（月）</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#fef2f2;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#f3f4f6;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#ede9fe;">○</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:white;">7日目　7/7（火）</td>
+        <td style="padding:8px 12px;text-align:center;color:var(--italy-green);font-weight:700;background:#ede9fe;">○</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#f3f4f6;">✕</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#f3f4f6;">✕</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border-light);">
+        <td style="padding:8px 12px;font-weight:600;background:#fafaf9;">8日目　7/8（水）</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:#f3f4f6;">✕</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:white;">－</td>
+        <td style="padding:8px 12px;text-align:center;color:#9ca3af;font-weight:700;background:white;">－</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;padding:12px 0 4px;font-size:11px;">
+    <span style="background:#f3f4f6;border:1px solid #d1d5db;border-radius:4px;padding:2px 8px;">✈ 機内・移動中</span>
+    <span style="background:#e0f2fe;border:1px solid #bae6fd;border-radius:4px;padding:2px 8px;">🇮🇹 ベネチア</span>
+    <span style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:4px;padding:2px 8px;">🇮🇹 フィレンツェ</span>
+    <span style="background:#fef2f2;border:1px solid #fecaca;border-radius:4px;padding:2px 8px;">🇮🇹 ローマ</span>
+    <span style="background:#ede9fe;border:1px solid #e9d5ff;border-radius:4px;padding:2px 8px;">🇮🇹 ミラノ</span>
+  </div>
+</div>
+</div>
+
+<!-- ===== 8日間の旅程 ===== -->
+<div class="section-title">8日間の旅程</div>
+
+<!-- DAY 1 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:var(--italy-green);">1<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月1日（水）</div>
+      <div class="day-route">東京（羽田） → 機中泊</div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">20:15</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot gold"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">東京（羽田）</div>
+        <div class="tl-title">羽田空港 集合</div>
+        <div class="tl-detail">第3ターミナル3階 Y団体カウンター ／ ＜HIS impresso＞前集合</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">22:45</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">東京（羽田）出発</div>
+        <span class="tl-transport t-plane">ANA NH207便</span>
+        <div class="tl-title">空路、ミラノ（マルペンサ）へ</div>
+        <div class="tl-sub">所要：約15時間25分</div>
+        <div class="tl-stay"><span class="stay-badge">機中泊</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 2 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:var(--italy-red);">2<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月2日（木）</div>
+      <div class="day-route">ミラノ（マルペンサ）着 → ベネチア</div>
+      <div class="day-meal-bar"><span class="meal-label">食事</span>朝<span class="meal-off">✕</span>　昼<span class="meal-on">○</span>　夕<span class="meal-off">✕</span></div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">7:10</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot green"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ミラノ（マルペンサ）</div>
+        <div class="tl-title">ミラノ（マルペンサ）着</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time"></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">→ ベネチアへ移動</div>
+        <span class="tl-transport t-bus">専用車</span>
+        <div class="tl-detail">ベネチアへ（275km／約4時間）【休憩回数の目安：1回】</div>
+        <div class="tl-detail" style="margin-top:4px;">昼食はシーフードフリットをお召し上がりください。</div>
+        <div class="tl-detail" style="margin-top:4px;">昼食後、ホテルへご案内いたします。</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">夕刻<span class="tl-time-approx">16:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ベネチア</div>
+        <div class="tl-title">世界遺産 ベネチア市内観光（約1時間30分）</div>
+        <div class="sights">
+          <div class="sight"><span class="sight-icon s-ext">外観</span>サンマルコ広場</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>サンマルコ寺院</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>溜め息橋、ドゥカーレ宮殿</div>
+          <div class="sight"><span class="sight-icon s-enter">入場</span>ゴンドラ遊覧観光（約30分）</div>
+        </div>
+        <div class="opt-box">
+          <strong>【オプショナルツアー】（別途代金）</strong><br>
+          ゴンドラ遊覧をお二人だけの貸切ゴンドラ遊覧に変更
+        </div>
+        <div class="tl-sub" style="margin-top:8px;">観光後、サンマルコ広場で解散・自由行動（各自ホテルへ）</div>
+        <div class="tl-stay"><span class="stay-badge">ベネチア本島泊</span> PRINCIPE（プリンチペ）</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 3 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:#0a6e3a;">3<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月3日（金）</div>
+      <div class="day-route">ベネチア → フィレンツェ</div>
+      <div class="day-meal-bar"><span class="meal-label">食事</span>朝<span class="meal-on">○</span>　昼<span class="meal-on">○</span>　夕<span class="meal-off">✕</span></div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">8:00</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ベネチア → フィレンツェへ移動</div>
+        <span class="tl-transport t-bus">専用車</span>
+        <div class="tl-detail">フィレンツェへ（260km／約3時間30分）【休憩回数の目安：1回】</div>
+        <div class="sights" style="margin-bottom:6px;"><div class="sight"><span class="sight-icon s-ext">外観</span>ミケランジェロ広場（途中立ち寄り）</div></div>
+        <div class="tl-detail">昼食はきのこのパスタをお召し上がりください。</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">午後<span class="tl-time-approx">12:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">フィレンツェ</div>
+        <div class="tl-title">世界遺産 フィレンツェ市内観光（約3時間）</div>
+        <div class="sights">
+          <div class="sight"><span class="sight-icon s-enter">入場</span>ウフィツィ美術館（※1）</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>シニョーリア広場</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>ドゥオモ</div>
+        </div>
+        <div class="tl-sub" style="margin-top:6px;">観光後、ホテルへご案内いたします。</div>
+        <div class="tl-stay"><span class="stay-badge">フィレンツェ泊</span> Hotel Albani（アルバーニ）</div>
+      </div>
+    </div>
+
+    <div class="tl-note">
+      （※1）観光当日はパスポートをお持ちください（コピー可）。ウフィツィ美術館が急遽無料開放日を設定した場合は、事前予約不可となるため訪問しません。代替観光はございません。ペットボトル500mlを超えるミネラルウォーター、大きな荷物（目安 40x35x15cm以上）やリュックサック、長傘の持ち込みは禁止されています。
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 4 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:#7c3aed;">4<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月4日（土）</div>
+      <div class="day-route">フィレンツェ → ローマ</div>
+      <div class="day-meal-bar"><span class="meal-label">食事</span>朝<span class="meal-on">○</span>　昼<span class="meal-on">○</span>　夕<span class="meal-off">✕</span></div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">午前<span class="tl-time-approx">08:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">フィレンツェ → ピサ</div>
+        <span class="tl-transport" style="background:#fffbf0;border:1px solid #fbbf24;color:#92400e;">オプショナル（別途代金）</span>
+        <div class="tl-title">斜塔入場付！ピサの斜塔半日市内観光（約4.5時間）</div>
+        <div class="tl-detail">ピサの斜塔に入場し、市内を観光します。</div>
+      </div>
+    </div>
+
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">午後<span class="tl-time-approx">12:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">フィレンツェ</div>
+        <div class="tl-detail">市内中心部で再集合し、昼食レストランへご案内します。（※1）</div>
+        <div class="tl-detail">昼食はレストランにてお召し上がりください。</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time"></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">→ ローマへ移動</div>
+        <span class="tl-transport t-bus">専用車</span>
+        <div class="tl-detail">ローマへ（280km／約4時間30分）【休憩回数の目安：2回】</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">夜<span class="tl-time-approx">18:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot green"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ローマ</div>
+        <div class="tl-detail">着後、ホテルへご案内いたします。</div>
+        <div class="tl-stay"><span class="stay-badge">ローマ泊</span> BETTOJA HOTEL MASSIMO D'AZEGLIO（マッシーモ ダゼリオ）</div>
+      </div>
+    </div>
+
+    <div class="tl-note">（※1）集合場所・時間は当日添乗員よりご案内いたします。</div>
+
+  </div>
+</div>
+
+<!-- DAY 5 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:#b45309;">5<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月5日（日）</div>
+      <div class="day-route">ローマ市内観光</div>
+      <div class="day-meal-bar"><span class="meal-label">食事</span>朝<span class="meal-on">○</span>　昼<span class="meal-off">✕</span>　夕<span class="meal-off">✕</span></div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">午前<span class="tl-time-approx">08:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ローマ</div>
+        <div class="tl-title">世界遺産 ローマ市内徒歩観光（約3時間）</div>
+        <div class="sights">
+          <div class="sight"><span class="sight-icon s-enter">入場</span>真実の口</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>チルコ・マッシモ</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>コロッセオ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">午後<span class="tl-time-approx">12:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ローマ</div>
+        <div class="tl-title">自由行動</div>
+        <div class="tl-stay"><span class="stay-badge">ローマ泊</span> BETTOJA HOTEL MASSIMO D'AZEGLIO（マッシーモ ダゼリオ）</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 6 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:#0891b2;">6<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月6日（月）</div>
+      <div class="day-route">バチカン市国観光 → 高速列車 → ミラノ</div>
+      <div class="day-meal-bar"><span class="meal-label">食事</span>朝<span class="meal-on">○</span>　昼<span class="meal-on">○</span>　夕<span class="meal-on">○</span></div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">午前<span class="tl-time-approx">08:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ローマ／バチカン市国</div>
+        <div class="tl-title">世界遺産 バチカン市国観光（約2時間）</div>
+        <div class="sights">
+          <div class="sight"><span class="sight-icon s-enter">入場</span>バチカン美術館（※1）・システィーナ礼拝堂</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>サンピエトロ寺院</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time"></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">→ ミラノへ移動</div>
+        <span class="tl-transport t-train">高速列車（2等車）</span>
+        <div class="tl-detail">ローマ→ミラノ（575km／約6時間）（※2）（※3）</div>
+        <div class="tl-detail" style="margin-top:4px;">昼食は列車内でのランチボックス（生ハムとモッツァレラチーズのパニーノ）をご用意いたします。</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">夕刻<span class="tl-time-approx">16:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ミラノ</div>
+        <div class="tl-title">ミラノ市内観光（約2時間）</div>
+        <div class="sights">
+          <div class="sight"><span class="sight-icon s-ext">外観</span>ドゥオモ</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>ヴィットリオ・エマヌエーレ2世のガッレリア</div>
+          <div class="sight"><span class="sight-icon s-ext">外観</span>スフォルツェスコ城</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">夜<span class="tl-time-approx">18:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot green"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ミラノ</div>
+        <div class="tl-detail">夕食はミラノ風カツレツをお召し上がりください。</div>
+        <span class="tl-transport t-bus">専用車</span>
+        <div class="tl-detail">ホテルへご案内いたします。</div>
+        <div class="tl-stay"><span class="stay-badge">ミラノ泊</span> BEST WESTERN GOLDENMILE（ベストウエスタンホテル ゴールデンマイル）</div>
+      </div>
+    </div>
+
+    <div class="tl-note">
+      （※1）バチカン美術館入場に際し、観光当日はパスポートをお持ちください（コピー可）。バチカン美術館内の観光は複数にわかれての鑑賞となる場合があります。大きな荷物（目安 40x35x15cm以上）やリュックサック、長傘、ガラス製品（大きさに関わらず）の持ち込みは禁止されています。<br>
+      （※2）大きなお荷物は別送しますので、手荷物だけでご乗車いただけます。<br>
+      （※3）本ツアー（7/1出発）は線路工事による迂回運行のため、所要時間が約6時間となります。
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 7 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:#4f46e5;">7<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月7日（火）</div>
+      <div class="day-route">ミラノ（マルペンサ）発 → 機中泊</div>
+      <div class="day-meal-bar"><span class="meal-label">食事</span>朝<span class="meal-on">○</span>　昼<span class="meal-off">✕</span>　夕<span class="meal-off">✕</span></div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">朝<span class="tl-time-approx">06:00〜</span></div>
+      </div>
+      <div class="tl-center"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ミラノ</div>
+        <span class="tl-transport t-bus">専用車</span>
+        <div class="tl-detail">空港へご案内いたします。</div>
+      </div>
+    </div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">11:20</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot gold"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">ミラノ（マルペンサ）出発</div>
+        <span class="tl-transport t-plane">ANA NH208便</span>
+        <div class="tl-title">空路、東京（羽田）へ</div>
+        <div class="tl-sub">所要：約12時間55分</div>
+        <div class="tl-stay"><span class="stay-badge">機中泊</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DAY 8 -->
+<div class="day-block wrap">
+  <div class="day-header">
+    <div class="day-num" style="background:#be185d;">8<span>DAY</span></div>
+    <div class="day-info">
+      <div class="day-date">2026年7月8日（水）</div>
+      <div class="day-route">東京（羽田）着・解散</div>
+    </div>
+    
+  </div>
+  <div class="timeline">
+    <div class="tl-line"></div>
+
+    <div class="tl-entry">
+      <div class="tl-left">
+        <div class="tl-time">7:15</div>
+      </div>
+      <div class="tl-center"><div class="tl-dot green"></div></div>
+      <div class="tl-right">
+        <div class="tl-city">東京（羽田）</div>
+        <div class="tl-title">東京（羽田）着</div>
+        <div class="tl-detail">着後、解散となります。</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 換算レート・緊急連絡 ===== -->
+<div class="section-title">換算レート・現地緊急連絡先</div>
+<div class="info-cards">
+  <div class="info-card">
+    <div class="info-card-hd">💱 オプショナルツアー換算レート</div>
+    <div class="info-card-body">
+      <div class="rate-big">1EUR = 188.52円</div>
+      当ツアーのオプショナルツアーの弊社換算レートです。<br>
+      1円単位以下は切り捨てとさせていただきます。
+    </div>
+  </div>
+  <div class="info-card">
+    <div class="info-card-hd">📞 現地緊急連絡先</div>
+    <div class="info-card-body">
+      <strong>TEL：+44-(0)7401-158468</strong><br>
+      （24時間対応／日本語・英語対応）<br>
+      ※常時、日本語スタッフの対応とは限りません。<br>
+      ※営業時間外・定休日は自動転送で緊急コールセンターへ。<br><br>
+      <strong>対応する緊急事項：</strong><br>
+      ● 怪我・病気など人体の重大な問題<br>
+      ● パスポートの紛失<br>
+      ● 緊急を要する重大な事故・事件<br>
+      ※事案に応じて、対応をお断りする場合があります。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 時間帯の目安 ===== -->
+<div class="section-title">日程表内の時間帯の目安</div>
+<div class="wrap">
+<div class="card" style="padding-bottom:16px;">
+  <div class="card-header">⏰ 時間帯の目安</div>
+  <div class="time-guide">
+    <div class="tc"><div class="tc-label">早朝</div><div class="tc-range">04:00〜</div></div>
+    <div class="tc"><div class="tc-label">朝</div><div class="tc-range">06:00〜</div></div>
+    <div class="tc"><div class="tc-label">午前</div><div class="tc-range">08:00〜</div></div>
+    <div class="tc"><div class="tc-label">午後</div><div class="tc-range">12:00〜</div></div>
+    <div class="tc"><div class="tc-label">夕刻</div><div class="tc-range">16:00〜</div></div>
+    <div class="tc"><div class="tc-label">夜</div><div class="tc-range">18:00〜</div></div>
+  </div>
+  <div style="font-size:12px;color:var(--mid-gray);padding-top:4px;">
+    ※深夜：23:00〜　各地の発着時刻はホテルを起点とした標準的な目安です。季節・天候・曜日・宿泊ホテルの立地などにより変わります。
+  </div>
+</div>
+</div>
+
+<!-- ===== オプショナルツアー ===== -->
+<div class="section-title">オプショナルツアーのご案内</div>
+<div class="wrap">
+<div class="card" style="padding-bottom:16px;">
+  <div class="card-header">🎫 オプショナルツアー</div>
+  <div style="padding-top:12px;">
+    <div class="note-box">
+      ※オプショナルツアーはご出発の5日前（5日前が土・日・祝にあたる場合はその前日の平日まで）予約担当者までお申し付けください。ゴールデンウィーク、クリスマス時期から年末年始が絡む旅行に関しては申し込み締め切り期日が早まる可能性もあります。ご出発5日前を過ぎてのオプショナル追加ご希望の場合は、添乗員へ直接お申し付けください。
+    </div>
+
+    <div class="opt-card">
+      <div class="opt-title">【2日目】ゴンドラ遊覧をお二人だけの貸切ゴンドラ遊覧に変更</div>
+      <div class="opt-row"><span class="opt-key">おひとり様料金</span><span class="opt-val">¥10,000</span></div>
+      <div class="opt-row"><span class="opt-key">最少催行人員</span><span class="opt-val">2名</span></div>
+      <div class="opt-row"><span class="opt-key">出発予定時間</span><span class="opt-val">－</span></div>
+      <div class="opt-row"><span class="opt-key">所要時間</span><span class="opt-val">30分</span></div>
+      <div class="opt-cancel">取消規定：ツアー本体の取消料規定に準じる（旅行代金＋アレンジ代金の合計金額を基準として算出）</div>
+    </div>
+
+    <div class="opt-card">
+      <div class="opt-title">【4日目】斜塔入場付！ピサの斜塔半日市内観光【8歳未満のお子様は不可】</div>
+      <div class="opt-row"><span class="opt-key">おひとり様料金</span><span class="opt-val">¥17,900</span></div>
+      <div class="opt-row"><span class="opt-key">最少催行人員</span><span class="opt-val">6名</span></div>
+      <div class="opt-row"><span class="opt-key">出発予定時間</span><span class="opt-val">8:30</span></div>
+      <div class="opt-row"><span class="opt-key">所要時間</span><span class="opt-val">約4.5時間</span></div>
+      <div class="opt-cancel">取消規定：催行日の5日前まで…無料、4日前以降…100%（土・日・日本の祝日を数えない）</div>
+    </div>
+
+    <div style="font-size:12px;background:#f9f8f6;border:1px solid var(--border-light);border-radius:6px;padding:14px 16px;margin-top:4px;line-height:1.9;">
+      <strong style="display:block;margin-bottom:6px;">オプショナルツアー共通注意事項</strong>
+      ● お支払い頂く金額は、ご出発の約35日前頃の当社指定レートにて確定となります。為替変動によりパンフレット及びWEB掲載商品の目安金額とは相違がある場合もあります。<br>
+      ● お支払い後でも、最終的に最少催行人員に満たなかった場合、オプショナルツアーは中止となり、ご帰国後のご返金となります。<br>
+      ● 現地事情により予告なく実施日、内容、料金等が変更、或いは中止になる場合があります。<br>
+      ● 当社は、申込金の支払いを受けることなく、契約の締結を承諾した時に、契約は成立するものといたします。お取り消しの際は、所定のお取消し料を申し受けます。<br>
+      ● お申込後、お客様の都合によるキャンセルの場合は、所定の取消料を申し受けます。<br>
+      ● オプショナルをオンライン（弊社VACATIONサイト）でお申し込みの場合は、必ず予約担当者にお申し出下さい。VACATIONサイトにてお申し込みの場合、こちらに記載のある条件と異なる場合がありますので必ずご確認下さい。
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== ご注意とご案内 ===== -->
+<div class="section-title">ご注意とご案内</div>
+<div class="wrap">
+
+<div class="caution-card">
+  <div class="caution-hd">⚠ ご注意とご案内</div>
+  <div class="caution-body">
+    <div class="caution-cat">【飛行機】</div>
+    <p>● 座席位置のご希望は承れません。マイレージの登録はご自身で行っていただきます。</p>
+
+    <div class="caution-cat">【ホテル】</div>
+    <p>● 各都市の宿泊は、現地習慣によりシャワーのみでバスタブのない部屋となります。（バスタブ付の部屋になる場合もあります。）</p>
+    <p>● 各都市のホテルは部屋により、広さ・仕様が異なる場合があります。</p>
+    <p>● イタリアのホテルは建物が古いため全体的に壁が薄く、お部屋の外の音が聞こえやすい場合があります。また、タンクの容量によりホテル全体で一度に使えるお湯の量が限られ、お湯が出にくい場合があります。ご承知おきください。</p>
+    <p>● 3名1室のお申し込みは2名様と1名様に分かれてご利用いただく場合があります。3名1室利用の場合、お部屋は2人部屋に簡易ベッドを入れ3名様でご利用いただくため大変手狭となります。また、エキストラベッドの搬入はチェックイン後となります。予めご了承ください。</p>
+    <p>● ホテル出発時間により、朝食はボックスブレックファストになる場合がございます。</p>
+    <p>● ホテルでのポーターはついております（但し、ホテルの到着ならびに出発時間によってはお荷物をご自身で運んでいただく可能性もございます。予めご了承ください）。空港・列車でのポーターサービスはついておりません。お荷物はお客様ご自身で運んでいただきます。</p>
+
+    <div class="caution-cat">【観光】</div>
+    <p>● 観光中（また送迎中）には、最大2ヶ所の土産物店へご案内させていただくことが条件となっています。上記回数には、休憩場所・レストラン・観光施設等に併設された土産物店や販売コーナーは含みません。なお、これは土産物店入店や土産物品の購入を強制するものではありません。観光時間の関係上、お土産店にご案内できないこともありますが、この場合は旅程保証の変更補償金の支払いの対象とはなりません。</p>
+    <p>● 各都市の市内観光において、入場観光予定地でも、休館日やミサの日には入場できません。休館日、祝祭日についてはお問い合わせください。</p>
+    <p>● 教会・修道院などの宗教施設は、肌の露出面積が大きい服装や華美な服装、和服を含む伝統衣装を着用している場合、施設側の判断により入場を拒否される可能性があります。</p>
+    <p>● 交通規則などにより徒歩での観光が多くなりますので、歩きやすい履き慣れた靴をご用意ください。</p>
+    <p>● ご参加いただくコースにより日程表内の美術館や教会内等の絵画は貸し出し、修復等でご覧いただけない場合もございます。予めご了承ください。</p>
+    <p>● 空港〜ホテル間の移動及び観光（オプショナルツアー含む）は他のお客様と一緒になる場合がございます。</p>
+    <p>● 日程表内に記載のあるオプショナルツアーでも、不催行日には実施いたしません。</p>
+
+    <div class="caution-cat">【その他】</div>
+    <p>● 日程表掲載の各地の発着時刻はホテルを起点とした標準的な目安です。また、観光及び移動時間の所要時間もあくまで目安です。季節、天候、曜日、宿泊ホテルの立地などにより変わりますので、予めご了承ください。</p>
+    <p>● 移動や観光後の自由行動において「解散・集合場所」の記載がないものは、当日添乗員よりご案内します。</p>
+    <p>● 当ツアーで訪問する地域には外務省より渡航先に関する情報が発出されています。必ずご自身で最新情報をご確認ください。</p>
+    <p>● 日曜日、現地祝日は多くのレストランや商店がお休みとなります。</p>
+    <p>● 現地事情により、宿泊都市順序・観光内容を変更してご案内する場合があります。</p>
+  </div>
+</div>
+
+<div class="caution-card">
+  <div class="caution-hd">👤 お客様へ</div>
+  <div class="caution-body">
+    <p>● 添乗員が従事する時間帯は原則として8時から20時までとします。また労働基準法の定めからも勤務中に一定の休息を適宜取得させていただきます。航空機内におきましても離着陸前後、緊急対応が必要な場合を除きまして、休憩時間とさせていただきますので、お客様のご理解をお願い申し上げます。</p>
+    <p>● 悪天候、天災地変、交通機関の遅延・不通・スケジュールの変更・ストライキ・経路変更等による旅程日程の変更・目的地滞在期間の短縮及び観光地の変更・削除などが生じる場合がございます。このような当社の関与しえない事由の場合は、当社は免責となりその責任は負いかねますが、当初予定する日程に従ったサービスが提供できるように手配努力いたします。その場合は、現地にて追加手配した交通費・宿泊費等はお客様のご負担となりますので、予めご了承ください。（ご出発前に弊社旅行条件書を必ずご一読ください）</p>
+    <p>● 免税手続きについては、各小売店・空港にてご確認の上、お客様ご自身の責任で行ってください。なお、帰国便の出発時間、空港の混雑状況および乗継地での乗継時間など、諸事情により免税手続きができない場合があります。予めご了承ください。</p>
+    <p>● 添乗員からの「ご挨拶電話」はご希望のお客様にのみご連絡します。同行する担当添乗員より、ご出発日の前日から数えて3日前から任意のお時間に、代表者様へご挨拶のお電話をさせていただいております。（複数名でのご参加の場合は代表者様のみ）</p>
+    <p>● impressoで携行できるお荷物は原則1名様につき、スーツケース1つ（3辺の合計が158cm以内で1つあたり23kgまで）と、現地移動時の身の回り品（ハンドバッグ位の大きさ）の手荷物1つとさせていただきます。エコノミークラス・ビジネスクラス混乗のコースは共通とさせていただいております。</p>
+  </div>
+</div>
+
+<div class="caution-card">
+  <div class="caution-hd">✈ ご協力のお願い（搭乗について）</div>
+  <div class="caution-body">
+    <p>● 空港にてお渡しする搭乗券に記載されている【搭乗時間（BOARDINGTIME）】までに搭乗ゲートへお越しください。（注：「出発時間」ではありません）搭乗時間を過ぎ、遅れてゲートにお越しの場合、既に搭乗終了になっている場合があります。</p>
+    <p>● 万が一搭乗終了になっていた場合は、ご搭乗頂くことができません。この場合一切の交渉は致しかねます。搭乗ゲート番号は搭乗開始直前に変更になることがあります。空港内電光掲示板で必ずご搭乗便のゲート番号を再度ご確認ください。</p>
+    <p>● ご不明な点は、当日添乗員にご確認ください。</p>
+    <p>● 添乗員は搭乗終了前には機内に入りますため、搭乗終了後は機外でお待ちできません。時間に余裕をもって、搭乗時間までに、搭乗ゲートへお越しくださいますよう、ご協力をお願いいたします。</p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- ===== LEGEND ===== -->
+<div class="legend">
+  <div class="legend-inner">
+    <strong style="color:#1f2937;">凡例：</strong>　
+    <span style="background:#fee2e2;color:var(--italy-red);font-weight:700;font-size:10px;padding:1px 5px;border-radius:3px;">入場</span>＝入場観光　
+    <span style="background:#dbeafe;color:var(--accent-blue);font-weight:700;font-size:10px;padding:1px 5px;border-radius:3px;">外観</span>＝下車・外観観光　
+    <span style="background:#d1fae5;color:#065f46;font-weight:700;font-size:10px;padding:1px 5px;border-radius:3px;">車窓</span>＝車窓観光　
+    <span style="background:#fffbf0;border:1px solid #fbbf24;border-radius:3px;padding:1px 6px;font-size:11px;font-weight:700;color:#92400e;">オプショナル</span>＝別途代金
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  <strong>HIS impresso</strong>　美しきイタリア8日間 最終日程表<br>
+  NH＝ANA　｜　1EUR = 188.52円（弊社換算レート）
+</div>
+
+</body>
+</html>
