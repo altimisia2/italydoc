@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>旅行イタリア語まとめ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Noto+Sans+JP:wght@400;700&display=swap');
+  :root {
+    --navy: #1A2744; --terra: #C4622D; --gold: #B8963E;
+    --muted: #7A6F63; --stone: #EDE8E0; --bg: #FAF6EF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Noto Sans JP', sans-serif; font-size: 14px; color: #222; }
+
+  header { background: var(--navy); color: #fff; text-align: center; padding: 24px 16px 18px; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; }
+  header h1 em { color: var(--gold); }
+  header p { font-size: 0.72rem; color: #8899BB; margin-top: 4px; letter-spacing: 0.08em; }
+
+  /* 音声状態バナー */
+  #voice-status {
+    background: #FEF3E9; color: #8B4513;
+    font-size: 0.75rem; text-align: center;
+    padding: 6px 12px; display: none;
+  }
+  #voice-status.show { display: block; }
+
+  nav {
+    display: flex; overflow-x: auto; background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 0 8px; gap: 2px; -webkit-overflow-scrolling: touch;
+  }
+  nav button {
+    flex-shrink: 0; background: none; border: none;
+    color: #8899BB; padding: 9px 13px;
+    font-size: 0.76rem; font-family: inherit; cursor: pointer;
+    border-bottom: 2px solid transparent; white-space: nowrap;
+  }
+  nav button.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  .section { display: none; padding: 14px 16px 60px; max-width: 600px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  .group-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--muted); text-transform: uppercase;
+    margin: 20px 0 8px; padding-left: 2px;
+  }
+  .group-label:first-child { margin-top: 4px; }
+
+  /* フレーズ行 — タップで再生 */
+  .row {
+    display: flex; flex-direction: column;
+    padding: 10px 12px 10px 10px;
+    border-bottom: 1px solid var(--stone);
+    gap: 2px; cursor: pointer;
+    position: relative;
+    transition: background 0.1s;
+    border-radius: 0;
+  }
+  .row:hover, .row:active { background: #EFF3FB; }
+  .row.playing { background: #E8F0FE; }
+
+  /* 再生アイコン */
+  .row::after {
+    content: '▶';
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    font-size: 0.7rem; color: var(--stone);
+    transition: color 0.15s;
+  }
+  .row:hover::after { color: var(--navy); }
+  .row.playing::after { content: '♪'; color: var(--gold); }
+
+  .jp   { font-weight: 700; color: #222; font-size: 0.95rem; padding-right: 24px; }
+  .it   { font-family: 'Playfair Display', serif; font-style: italic; color: var(--navy); font-size: 1.05rem; }
+  .ph   { font-size: 0.72rem; color: var(--muted); }
+  .note { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+  .tip {
+    background: #EEF2F9; border-radius: 8px;
+    padding: 9px 12px; margin: 10px 0 4px;
+    font-size: 0.76rem; color: #334; line-height: 1.65;
+  }
+  .tip b { color: var(--navy); }
+
+  footer { text-align: center; padding: 20px; font-size: 0.72rem; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🇮🇹 旅行で使える <em>Italiano</em></h1>
+  <p>フィレンツェ・ミラノ・バチカン・ローマ ／ タップで発音</p>
+</header>
+<div id="voice-status"></div>
+
+<nav>
+  <button class="active" onclick="show(0)">挨拶</button>
+  <button onclick="show(1)">Vorrei〜</button>
+  <button onclick="show(2)">Posso〜?</button>
+  <button onclick="show(3)">値段・会計</button>
+  <button onclick="show(4)">場所・移動</button>
+  <button onclick="show(5)">食事・人数</button>
+  <button onclick="show(6)">困ったとき</button>
+  <button onclick="show(7)">5W1H</button>
+</nav>
+
+<!-- 0: 挨拶 -->
+<div class="section active">
+  <p class="group-label">時間帯別</p>
+  <div class="row" data-it="Buongiorno"><span class="jp">おはよう / こんにちは（午前〜昼）</span><span class="it">Buongiorno</span><span class="ph">ブオンジョルノ</span><span class="note">店に入る際の第一声。</span></div>
+  <div class="row" data-it="Buonasera"><span class="jp">こんにちは / こんばんは（夕方〜夜）</span><span class="it">Buonasera</span><span class="ph">ブオナセーラ</span><span class="note">夕食レストラン入店はこれ。</span></div>
+  <div class="row" data-it="Buona giornata!"><span class="jp">良い一日を！（別れ際）</span><span class="it">Buona giornata!</span><span class="ph">ブオナ ジョルナータ</span><span class="note">Buongiorno（出会い）と対。返しも同じく。</span></div>
+  <div class="row" data-it="Ciao"><span class="jp">やあ / じゃあね（カジュアル）</span><span class="it">Ciao</span><span class="ph">チャオ</span><span class="note">初対面・店員には Buongiorno が無難。</span></div>
+
+  <p class="group-label">返答・基本</p>
+  <div class="row" data-it="Tutto bene!"><span class="jp">大丈夫・万事OK</span><span class="it">Tutto bene!</span><span class="ph">トゥット ベーネ</span><span class="note">食事中に "Tutto bene?" と聞かれたら笑顔で返す。</span></div>
+  <div class="row" data-it="Grazie mille"><span class="jp">ありがとう</span><span class="it">Grazie</span><span class="ph">グラーツィエ</span><span class="note">Grazie mille で「どうもありがとう」。</span></div>
+  <div class="row" data-it="Prego"><span class="jp">どういたしまして / どうぞ</span><span class="it">Prego</span><span class="ph">プレーゴ</span></div>
+  <div class="row" data-it="Scusi"><span class="jp">すみません（呼びかけ）</span><span class="it">Scusi</span><span class="ph">スクージ</span></div>
+  <div class="row" data-it="Sì"><span class="jp">はい</span><span class="it">Sì</span><span class="ph">スィ</span></div>
+  <div class="row" data-it="No"><span class="jp">いいえ</span><span class="it">No</span><span class="ph">ノ</span></div>
+  <div class="row" data-it="per favore"><span class="jp">〜をお願いします（文末に添える）</span><span class="it">per favore</span><span class="ph">ペル ファヴォーレ</span></div>
+</div>
+
+<!-- 1: Vorrei -->
+<div class="section">
+  <div class="tip"><b>文法：</b>Vorrei = voglio の丁寧形（条件法）。<b>Vorrei + 名詞 / 動詞の原形</b>で使う。文末に per favore を添えると◎</div>
+  <p class="group-label">注文・買い物</p>
+  <div class="row" data-it="Vorrei questo"><span class="jp">これがほしいです</span><span class="it">Vorrei questo.</span><span class="ph">ヴォッレイ クエスト</span><span class="note">指差しで使える最強フレーズ。</span></div>
+  <div class="row" data-it="Vorrei questo, per favore"><span class="jp">これをください（丁寧）</span><span class="it">Vorrei questo, per favore.</span><span class="ph">〃 ペル ファヴォーレ</span></div>
+  <div class="row" data-it="Vorrei un cappuccino"><span class="jp">カプチーノを一杯ください</span><span class="it">Vorrei un cappuccino.</span><span class="ph">〃 ウン カップッチーノ</span><span class="note">午後注文すると少し驚かれることも。</span></div>
+  <div class="row" data-it="Vorrei due cappuccini"><span class="jp">カプチーノを二杯ください</span><span class="it">Vorrei due cappuccini.</span><span class="ph">〃 ドゥエ カップッチーニ</span><span class="note">複数形は cappuccino → cappuccini。</span></div>
+  <div class="row" data-it="Vorrei un cornetto"><span class="jp">コルネット（クロワッサン）を一つ</span><span class="it">Vorrei un cornetto.</span><span class="ph">〃 ウン コルネット</span></div>
+  <div class="row" data-it="Vorrei due cornetti"><span class="jp">コルネットを二つ</span><span class="it">Vorrei due cornetti.</span><span class="ph">〃 ドゥエ コルネッティ</span><span class="note">複数形は cornetto → cornetti。</span></div>
+  <div class="row" data-it="Vorrei il menù"><span class="jp">メニューをください</span><span class="it">Vorrei il menù.</span><span class="ph">〃 イル メヌ</span></div>
+  <div class="row" data-it="Un caffè, per favore"><span class="jp">コーヒーを一杯ください</span><span class="it">Un caffè, per favore.</span><span class="ph">ウン カッフェ ペル ファヴォーレ</span><span class="note">イタリアのcaffèはエスプレッソ。日本のコーヒーとは別物。</span></div>
+  <div class="row" data-it="Due caffè, per favore"><span class="jp">コーヒーを二杯ください</span><span class="it">Due caffè, per favore.</span><span class="ph">ドゥエ カッフェ ペル ファヴォーレ</span><span class="note">caffè は単複同形（変化しない）。</span></div>
+  <p class="group-label">動詞フレーズ</p>
+  <div class="row" data-it="Vorrei ordinare"><span class="jp">注文したいのですが</span><span class="it">Vorrei ordinare.</span><span class="ph">〃 オルディナーレ</span></div>
+  <div class="row" data-it="Vorrei pagare"><span class="jp">支払いたいのですが</span><span class="it">Vorrei pagare.</span><span class="ph">〃 パガーレ</span></div>
+  <div class="row" data-it="Vorrei comprare"><span class="jp">〜を買いたいのですが</span><span class="it">Vorrei comprare.</span><span class="ph">〃 コンプラーレ</span></div>
+  <div class="row" data-it="Posso avere una busta?"><span class="jp">袋をもらえますか？</span><span class="it">Posso avere una busta?</span><span class="ph">ポッソ アヴェーレ ウナ ブスタ</span><span class="note">イタリアはレジ袋有料が多い。</span></div>
+  <div class="row" data-it="Vorrei questo piatto"><span class="jp">このお皿（料理）をください</span><span class="it">Vorrei questo piatto.</span><span class="ph">〃 クエスト ピアット</span><span class="note">メニューを指差しながら使える。piatto = お皿・料理。</span></div>
+</div>
+
+<!-- 2: Posso -->
+<div class="section">
+  <div class="tip"><b>文法：</b>Posso = potere（できる）の一人称。<b>Posso + 動詞の原形</b>で許可を求める。</div>
+  <p class="group-label">許可をお願いする</p>
+  <div class="row" data-it="Posso entrare?"><span class="jp">入ってもいいですか？</span><span class="it">Posso entrare?</span><span class="ph">ポッソ エントラーレ</span></div>
+  <div class="row" data-it="Posso toccare?"><span class="jp">触ってもいいですか？</span><span class="it">Posso toccare?</span><span class="ph">ポッソ トッカーレ</span></div>
+  <div class="row" data-it="Posso fare una foto?"><span class="jp">写真を撮ってもいいですか？</span><span class="it">Posso fare una foto?</span><span class="ph">ポッソ ファーレ ウナ フォト</span><span class="note">バチカン・教会内は撮影禁止エリア多数。必ず確認を。</span></div>
+  <div class="row" data-it="Posso provare?"><span class="jp">試着してもいいですか？</span><span class="it">Posso provare?</span><span class="ph">ポッソ プロヴァーレ</span></div>
+  <div class="row" data-it="Posso ordinare questo piatto?"><span class="jp">このお皿（料理）を注文できますか？</span><span class="it">Posso ordinare questo piatto?</span><span class="ph">ポッソ オルディナーレ クエスト ピアット</span><span class="note">メニュー指差しで使える。Vorrei questo piatto. でも同じ意図が伝わる。</span></div>
+  <div class="row" data-it="Posso pagare con carta?"><span class="jp">カードで払えますか？</span><span class="it">Posso pagare con carta?</span><span class="ph">ポッソ パガーレ コン カルタ</span><span class="note">現金のみの小店もあるので要確認。</span></div>
+  <p class="group-label">相手にお願いする</p>
+  <div class="row" data-it="Può farmi una foto?"><span class="jp">写真を撮っていただけますか？</span><span class="it">Può farmi una foto?</span><span class="ph">プオ ファルミ ウナ フォト</span><span class="note">自分ではなく相手が主語のとき。</span></div>
+</div>
+
+<!-- 3: 値段・会計 -->
+<div class="section">
+  <p class="group-label">値段を聞く</p>
+  <div class="row" data-it="Quant'è?"><span class="jp">いくらですか？（一品）</span><span class="it">Quant'è?</span><span class="ph">クアンテ？</span></div>
+  <div class="row" data-it="Quanto costa?"><span class="jp">いくらですか？（1点の商品）</span><span class="it">Quanto costa?</span><span class="ph">クアント コスタ</span></div>
+  <div class="row" data-it="Quanto costano?"><span class="jp">いくらですか？（複数の商品）</span><span class="it">Quanto costano?</span><span class="ph">クアント コスタノ</span><span class="note">複数なら動詞が costano に変わる。</span></div>
+  <p class="group-label">お会計</p>
+  <div class="row" data-it="Il conto, per favore"><span class="jp">お会計をお願いします</span><span class="it">Il conto, per favore.</span><span class="ph">イル コント ペル ファヴォーレ</span><span class="note">自分から声をかけないと会計が来ない。</span></div>
+  <div class="row" data-it="Quant'è il totale?"><span class="jp">合計はいくらですか？</span><span class="it">Quant'è il totale?</span><span class="ph">クアンテ イル トターレ</span></div>
+  <div class="tip"><b>coperto（コペルト）</b>＝席料・パン代。着席で€1〜3が自動加算されることが多い。チップは義務なし。</div>
+</div>
+
+<!-- 4: 場所・移動 -->
+<div class="section">
+  <div class="tip"><b>文法：</b>Dov'è = Dove（どこ）+ è の短縮形。複数なら <b>Dove sono〜?</b></div>
+  <p class="group-label">場所を聞く</p>
+  <div class="row" data-it="Dov'è la stazione?"><span class="jp">駅はどこですか？</span><span class="it">Dov'è la stazione?</span><span class="ph">ドヴェ ラ スタツィオーネ</span></div>
+  <div class="row" data-it="Dov'è il bagno?"><span class="jp">トイレはどこですか？</span><span class="it">Dov'è il bagno?</span><span class="ph">ドヴェ イル バーニョ</span><span class="note">観光地は有料（€0.5〜1）が多い。小銭を用意。</span></div>
+  <div class="row" data-it="Dov'è la farmacia?"><span class="jp">薬局はどこですか？</span><span class="it">Dov'è la farmacia?</span><span class="ph">ドヴェ ラ ファルマチア</span><span class="note">緑の十字マークが目印。</span></div>
+  <div class="row" data-it="Dov'è il Vaticano?"><span class="jp">バチカンはどこですか？</span><span class="it">Dov'è il Vaticano?</span><span class="ph">ドヴェ イル ヴァティカーノ</span></div>
+  <p class="group-label">時間・チケット</p>
+  <div class="row" data-it="A che ora apre?"><span class="jp">何時に開きますか？</span><span class="it">A che ora apre?</span><span class="ph">ア ケ オーラ アープレ</span></div>
+  <div class="row" data-it="A che ora chiude?"><span class="jp">何時に閉まりますか？</span><span class="it">A che ora chiude?</span><span class="ph">ア ケ オーラ キウーデ</span></div>
+  <div class="row" data-it="Un biglietto, per favore"><span class="jp">チケットを一枚ください</span><span class="it">Un biglietto, per favore.</span><span class="ph">ウン ビリエット ペル ファヴォーレ</span></div>
+  <div class="row" data-it="Due biglietti, per favore"><span class="jp">チケットを二枚ください</span><span class="it">Due biglietti, per favore.</span><span class="ph">ドゥエ ビリエッティ ペル ファヴォーレ</span><span class="note">複数形は biglietto → biglietti。</span></div>
+</div>
+
+<!-- 5: 食事・人数 -->
+<div class="section">
+  <div class="tip"><b>文法：</b>Siamo in + 数字 = 私たちは〜人です。due=2 / tre=3 / quattro=4 / cinque=5</div>
+  <p class="group-label">入店・席</p>
+  <div class="row" data-it="Siamo in due"><span class="jp">2人です</span><span class="it">Siamo in due.</span><span class="ph">シアーモ イン ドゥエ</span></div>
+  <div class="row" data-it="Siamo in tre"><span class="jp">3人です</span><span class="it">Siamo in tre.</span><span class="ph">シアーモ イン トレ</span></div>
+  <div class="row" data-it="Siamo in quattro"><span class="jp">4人です</span><span class="it">Siamo in quattro.</span><span class="ph">シアーモ イン クアットロ</span></div>
+  <div class="row" data-it="Un tavolo per due, per favore"><span class="jp">2人席をお願いします</span><span class="it">Un tavolo per due, per favore.</span><span class="ph">ウン タヴォロ ペル ドゥエ</span></div>
+  <div class="row" data-it="Ho prenotato"><span class="jp">予約しています</span><span class="it">Ho prenotato.</span><span class="ph">オ プレノタート</span><span class="note">〜の名前で → Ho prenotato a nome [名前].</span></div>
+  <p class="group-label">食事中</p>
+  <div class="row" data-it="È delizioso!"><span class="jp">おいしい！</span><span class="it">È delizioso!</span><span class="ph">エ デリツィオーゾ</span><span class="note">店員が喜ぶひと言。</span></div>
+  <div class="row" data-it="Tutto bene!"><span class="jp">大丈夫です（店員の確認に返す）</span><span class="it">Tutto bene!</span><span class="ph">トゥット ベーネ</span></div>
+</div>
+
+<!-- 6: 困ったとき -->
+<div class="section">
+  <p class="group-label">言葉・コミュニケーション</p>
+  <div class="row" data-it="Non capisco"><span class="jp">わかりません</span><span class="it">Non capisco.</span><span class="ph">ノン カピスコ</span><span class="note">言うと相手がゆっくり話すか英語に切り替えてくれる。</span></div>
+  <div class="row" data-it="Parla inglese?"><span class="jp">英語を話せますか？</span><span class="it">Parla inglese?</span><span class="ph">パルラ イングレーゼ</span></div>
+  <div class="row" data-it="Può parlare più lentamente?"><span class="jp">もっとゆっくり話してもらえますか？</span><span class="it">Può parlare più lentamente?</span><span class="ph">プオ パルラーレ ピュ レンタメンテ</span></div>
+  <p class="group-label">緊急・トラブル</p>
+  <div class="row" data-it="Mi sono perso"><span class="jp">迷子になりました</span><span class="it">Mi sono perso/a.</span><span class="ph">ミ ソノ ペルソ/ペルサ</span><span class="note">男性：perso　女性：persa</span></div>
+  <div class="row" data-it="Aiuto!"><span class="jp">助けて！</span><span class="it">Aiuto!</span><span class="ph">アイウート</span></div>
+  <div class="row" data-it="Al ladro!"><span class="jp">泥棒！</span><span class="it">Al ladro!</span><span class="ph">アル ラードロ</span></div>
+  <div class="row" data-it="Chiami la polizia!"><span class="jp">警察を呼んでください！</span><span class="it">Chiami la polizia!</span><span class="ph">キアーミ ラ ポリツィア</span><span class="note">緊急番号：警察112 / 救急118</span></div>
+</div>
+
+<!-- 7: 5W1H -->
+<div class="section">
+  <div class="tip"><b>使い方：</b>疑問詞 + 名詞/動詞でフレーズが作れる。指差しと組み合わせると更に便利。</div>
+
+  <p class="group-label">Cosa — 何</p>
+  <div class="row" data-it="Cosa è questo?"><span class="jp">これは何ですか？</span><span class="it">Cosa è questo?</span><span class="ph">コーザ エ クエスト</span><span class="note">メニュー・展示物など何でも使える万能フレーズ。</span></div>
+  <div class="row" data-it="Cosa mi consiglia?"><span class="jp">何がおすすめですか？</span><span class="it">Cosa mi consiglia?</span><span class="ph">コーザ ミ コンシーリャ</span><span class="note">店員・ウェイターへのおすすめ確認。</span></div>
+  <div class="row" data-it="Cosa succede?"><span class="jp">何が起きているんですか？</span><span class="it">Cosa succede?</span><span class="ph">コーザ スッチェーデ</span><span class="note">トラブル時・行列の理由を聞くときなど。</span></div>
+
+  <p class="group-label">Dove — どこ</p>
+  <div class="row" data-it="Dove siamo?"><span class="jp">ここはどこですか？</span><span class="it">Dove siamo?</span><span class="ph">ドーヴェ シアーモ</span><span class="note">迷子になったときに地図を見せながら使う。</span></div>
+  <div class="row" data-it="Dove si compra il biglietto?"><span class="jp">チケットはどこで買えますか？</span><span class="it">Dove si compra il biglietto?</span><span class="ph">ドーヴェ シ コンプラ イル ビリエット</span></div>
+  <div class="row" data-it="Dove posso trovare un taxi?"><span class="jp">タクシーはどこで見つかりますか？</span><span class="it">Dove posso trovare un taxi?</span><span class="ph">ドーヴェ ポッソ トロヴァーレ ウン タクシ</span></div>
+
+  <p class="group-label">Quando — いつ</p>
+  <div class="row" data-it="Quando apre?"><span class="jp">いつ開きますか？</span><span class="it">Quando apre?</span><span class="ph">クアンド アープレ</span><span class="note">A che ora apre?（何時に開く？）と合わせて使える。</span></div>
+  <div class="row" data-it="Quando parte il treno?"><span class="jp">電車はいつ出発しますか？</span><span class="it">Quando parte il treno?</span><span class="ph">クアンド パルテ イル トレーノ</span></div>
+  <div class="row" data-it="Quando arriva?"><span class="jp">いつ到着しますか？</span><span class="it">Quando arriva?</span><span class="ph">クアンド アッリーヴァ</span></div>
+
+  <p class="group-label">Chi — 誰</p>
+  <div class="row" data-it="Chi devo chiamare?"><span class="jp">誰に電話すればいいですか？</span><span class="it">Chi devo chiamare?</span><span class="ph">キ デーヴォ キアマーレ</span><span class="note">トラブル時に。</span></div>
+  <div class="row" data-it="Chi è il responsabile?"><span class="jp">担当者は誰ですか？</span><span class="it">Chi è il responsabile?</span><span class="ph">キ エ イル レスポンサービレ</span><span class="note">クレーム・問い合わせ時に。</span></div>
+
+  <p class="group-label">Come — どうやって・どんな</p>
+  <div class="row" data-it="Come si chiama questo?"><span class="jp">これは何という名前ですか？</span><span class="it">Come si chiama questo?</span><span class="ph">コーメ シ キアーマ クエスト</span><span class="note">料理・場所・商品の名前を聞くときに。</span></div>
+  <div class="row" data-it="Come si va a Roma?"><span class="jp">ローマへはどうやって行きますか？</span><span class="it">Come si va a Roma?</span><span class="ph">コーメ シ ヴァ ア ローマ</span><span class="note">Romaを行き先に替えて使える。</span></div>
+  <div class="row" data-it="Come stai?"><span class="jp">お元気ですか？</span><span class="it">Come stai?</span><span class="ph">コーメ スタイ</span><span class="note">返しは Bene, grazie!（元気です、ありがとう）。</span></div>
+
+  <p class="group-label">Quanto — いくつ・どのくらい</p>
+  <div class="row" data-it="Quanto tempo ci vuole?"><span class="jp">どのくらい時間がかかりますか？</span><span class="it">Quanto tempo ci vuole?</span><span class="ph">クアント テンポ チ ヴオーレ</span><span class="note">移動・待ち時間の確認に。</span></div>
+  <div class="row" data-it="Quanti minuti a piedi?"><span class="jp">徒歩何分ですか？</span><span class="it">Quanti minuti a piedi?</span><span class="ph">クアンティ ミヌーティ ア ピエーディ</span></div>
+  <div class="row" data-it="Quanto manca?"><span class="jp">あとどのくらいですか？</span><span class="it">Quanto manca?</span><span class="ph">クアント マンカ</span><span class="note">行列・待ち時間に。</span></div>
+</div>
+
+<!-- 7: 5W1H -->
+<div class="section">
+  <div class="tip"><b>使い方：</b>疑問詞 + 名詞/動詞 で質問が作れる。単語を入れ替えるだけで手札が一気に増える。</div>
+
+  <p class="group-label">What（何）— Cosa / Che</p>
+  <div class="row" data-it="Cosa è questo?"><span class="jp">これは何ですか？</span><span class="it">Cosa è questo?</span><span class="ph">コーザ エ クエスト</span></div>
+  <div class="row" data-it="Che cosa mi consiglia?"><span class="jp">何がおすすめですか？</span><span class="it">Che cosa mi consiglia?</span><span class="ph">ケ コーザ ミ コンシーリア</span></div>
+  <div class="row" data-it="Come si chiama questo?"><span class="jp">これは何という名前ですか？</span><span class="it">Come si chiama questo?</span><span class="ph">コーメ スィ キアーマ クエスト</span><span class="note">料理・場所・商品の名前を聞くとき。</span></div>
+
+  <p class="group-label">Where（どこ）— Dove</p>
+  <div class="row" data-it="Dove si compra il biglietto?"><span class="jp">チケットはどこで買えますか？</span><span class="it">Dove si compra il biglietto?</span><span class="ph">ドヴェ スィ コンプラ イル ビリエット</span></div>
+  <div class="row" data-it="Dove posso trovare un taxi?"><span class="jp">タクシーはどこで見つかりますか？</span><span class="it">Dove posso trovare un taxi?</span><span class="ph">ドヴェ ポッソ トロヴァーレ ウン タクスィ</span></div>
+  <div class="row" data-it="Da dove parte il treno?"><span class="jp">電車はどこから出ますか？</span><span class="it">Da dove parte il treno?</span><span class="ph">ダ ドヴェ パルテ イル トレーノ</span></div>
+
+  <p class="group-label">When（いつ）— Quando</p>
+  <div class="row" data-it="Quando apre?"><span class="jp">いつ開きますか？</span><span class="it">Quando apre?</span><span class="ph">クアンド アープレ</span></div>
+  <div class="row" data-it="Quando parte il prossimo treno?"><span class="jp">次の電車はいつ出ますか？</span><span class="it">Quando parte il prossimo treno?</span><span class="ph">クアンド パルテ イル プロッスィモ トレーノ</span></div>
+  <div class="row" data-it="Quando è pronto?"><span class="jp">いつ準備できますか？</span><span class="it">Quando è pronto?</span><span class="ph">クアンド エ プロント</span><span class="note">料理の待ち時間を聞くときにも。</span></div>
+
+  <p class="group-label">Who（誰）— Chi</p>
+  <div class="row" data-it="Chi devo chiamare?"><span class="jp">誰に電話すればいいですか？</span><span class="it">Chi devo chiamare?</span><span class="ph">キ デーヴォ キアマーレ</span><span class="note">トラブル時に。</span></div>
+  <div class="row" data-it="Chi è il responsabile?"><span class="jp">担当者は誰ですか？</span><span class="it">Chi è il responsabile?</span><span class="ph">キ エ イル レスポンサービレ</span><span class="note">クレーム・問い合わせ時に。</span></div>
+
+  <p class="group-label">How（どうやって）— Come</p>
+  <div class="row" data-it="Come si va a Roma?"><span class="jp">ローマへはどうやって行きますか？</span><span class="it">Come si va a Roma?</span><span class="ph">コーメ スィ ヴァ ア ローマ</span><span class="note">Roma の部分を入れ替えて使える。</span></div>
+  <div class="row" data-it="Come si usa?"><span class="jp">どうやって使いますか？</span><span class="it">Come si usa?</span><span class="ph">コーメ スィ ウーザ</span><span class="note">券売機・機器の操作を聞くとき。</span></div>
+  <div class="row" data-it="Come stai?"><span class="jp">お元気ですか？</span><span class="it">Come stai?</span><span class="ph">コーメ スタイ</span><span class="note">カジュアルな挨拶。Come sta? が丁寧形。</span></div>
+
+  <p class="group-label">How much/many（いくつ・どのくらい）— Quanto</p>
+  <div class="row" data-it="Quanto tempo ci vuole?"><span class="jp">どのくらい時間がかかりますか？</span><span class="it">Quanto tempo ci vuole?</span><span class="ph">クアント テンポ チ ヴオーレ</span><span class="note">移動・待ち時間の確認に。</span></div>
+  <div class="row" data-it="Quanti chilometri sono?"><span class="jp">何キロありますか？</span><span class="it">Quanti chilometri sono?</span><span class="ph">クアンティ キロメトリ ソーノ</span></div>
+</div>
+
+<footer>参考：@sasaGO.italiano / @IICTokyo2023 ｜ 🇮🇹 Buon viaggio!</footer>
+
+<script>
+  // --- タブ切り替え ---
+  const sections = document.querySelectorAll('.section');
+  const buttons  = document.querySelectorAll('nav button');
+  function show(i) {
+    sections.forEach((s,j) => s.classList.toggle('active', i===j));
+    buttons.forEach((b,j)  => b.classList.toggle('active', i===j));
+  }
+
+  // --- Web Speech API ---
+  const status = document.getElementById('voice-status');
+  let itVoice = null;
+  let currentRow = null;
+
+  function initVoices() {
+    const voices = speechSynthesis.getVoices();
+    // イタリア語音声を優先順で探す
+    itVoice =
+      voices.find(v => v.lang === 'it-IT' && v.localService) ||
+      voices.find(v => v.lang === 'it-IT') ||
+      voices.find(v => v.lang.startsWith('it'));
+
+    if (!itVoice) {
+      status.textContent = '⚠ お使いのブラウザにイタリア語音声がありません。Google翻訳アプリで聴いてください。';
+      status.classList.add('show');
+    }
+  }
+
+  // voices は非同期で読み込まれる場合がある
+  if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = initVoices;
+  }
+  initVoices();
+
+  function speak(text, rowEl) {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+
+    if (currentRow) currentRow.classList.remove('playing');
+    currentRow = rowEl;
+    rowEl.classList.add('playing');
+
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'it-IT';
+    utter.rate = 0.85;   // 少しゆっくり
+    utter.pitch = 1.0;
+    if (itVoice) utter.voice = itVoice;
+
+    utter.onend = () => rowEl.classList.remove('playing');
+    utter.onerror = () => rowEl.classList.remove('playing');
+    speechSynthesis.speak(utter);
+  }
+
+  // 全 .row にタップリスナー
+  document.querySelectorAll('.row').forEach(row => {
+    row.addEventListener('click', () => {
+      const text = row.dataset.it;
+      if (text) speak(text, row);
+    });
+  });
+</script>
+</body>
+</html>
